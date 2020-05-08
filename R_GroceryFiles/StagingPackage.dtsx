@@ -1,19 +1,2190 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="5/8/2020 11:33:52 AM"
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="DESKTOP-OHPI2QJ"
   DTS:CreatorName="DESKTOP-OHPI2QJ\Ishanka"
-  DTS:DTSID="{DF946899-CCA0-4108-9B96-06A8E20CDAA4}"
+  DTS:DTSID="{71900A1F-21C0-42A0-BDDD-15BC275B7025}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="15.0.2000.68"
   DTS:LocaleID="1033"
-  DTS:ObjectName="Package"
+  DTS:ObjectName="StagingPackage"
   DTS:PackageType="5"
-  DTS:VersionGUID="{9969568E-0592-438A-8A9A-559BA8C63375}">
+  DTS:VersionBuild="1"
+  DTS:VersionGUID="{41646279-2656-4077-8B3A-33874868C51F}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DESKTOP-OHPI2QJ\SQLEXPRESS.R_StagingDB]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{BA381926-EC1F-4C16-B493-91C7F144B9BA}"
+      DTS:ObjectName="DESKTOP-OHPI2QJ\SQLEXPRESS.R_StagingDB">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DESKTOP-OHPI2QJ\SQLEXPRESS;Initial Catalog=R_StagingDB;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DESKTOP-OHPI2QJ\SQLEXPRESS.R_Staging_DWWWWWW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{5C377D30-C57D-4A64-8145-9E45D3CF770A}"
+      DTS:ObjectName="DESKTOP-OHPI2QJ\SQLEXPRESS.R_Staging_DWWWWWW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DESKTOP-OHPI2QJ\SQLEXPRESS;Initial Catalog=R_Staging_DWWWWWW;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
   <DTS:Variables />
-  <DTS:Executables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Extract item data to DW staging"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{944F2945-DF88-4620-8F19-B501086CAD0E}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Extract item data to DW staging"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\Extract item data to DW staging.EventHandlers[OnPreExecute]"
+          DTS:CreationName="OnPreExecute"
+          DTS:DTSID="{8137BA5A-66B3-4EDC-A106-F50E5088E5BE}"
+          DTS:EventID="0"
+          DTS:EventName="OnPreExecute"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{6B60679C-D4A7-44C1-B627-7B70311592C5}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Extract item data to DW staging.EventHandlers[OnPreExecute]\Execute SQL Task"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{85AA89E2-46BD-483B-87EE-67BB7CD6AD63}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Execute SQL Task">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{5C377D30-C57D-4A64-8145-9E45D3CF770A}"
+                  SQLTask:SqlStatementSource="truncate table ItemStaging&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Extract item data to DW staging\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[ItemStaging]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Extract item data to DW staging\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-OHPI2QJ\SQLEXPRESS.R_Staging_DWWWWWW]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-OHPI2QJ\SQLEXPRESS.R_Staging_DWWWWWW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Extract item data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract item data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[item_nbr]"
+                      cachedDataType="r8"
+                      cachedName="item_nbr"
+                      externalMetadataColumnId="Package\Extract item data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[item_nbr]"
+                      lineageId="Package\Extract item data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[item_nbr]" />
+                    <inputColumn
+                      refId="Package\Extract item data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[family]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="family"
+                      externalMetadataColumnId="Package\Extract item data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[family]"
+                      lineageId="Package\Extract item data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[family]" />
+                    <inputColumn
+                      refId="Package\Extract item data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[class]"
+                      cachedDataType="r8"
+                      cachedName="class"
+                      externalMetadataColumnId="Package\Extract item data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[class]"
+                      lineageId="Package\Extract item data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[class]" />
+                    <inputColumn
+                      refId="Package\Extract item data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[perishable]"
+                      cachedDataType="r8"
+                      cachedName="perishable"
+                      externalMetadataColumnId="Package\Extract item data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[perishable]"
+                      lineageId="Package\Extract item data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[perishable]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Extract item data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[item_nbr]"
+                      dataType="r8"
+                      name="item_nbr" />
+                    <externalMetadataColumn
+                      refId="Package\Extract item data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[family]"
+                      dataType="wstr"
+                      length="255"
+                      name="family" />
+                    <externalMetadataColumn
+                      refId="Package\Extract item data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[class]"
+                      dataType="r8"
+                      name="class" />
+                    <externalMetadataColumn
+                      refId="Package\Extract item data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[perishable]"
+                      dataType="r8"
+                      name="perishable" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract item data to DW staging\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Extract item data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract item data to DW staging\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract item data to DW staging\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract item data to DW staging\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract item data to DW staging\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract item data to DW staging\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[items]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Extract item data to DW staging\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-OHPI2QJ\SQLEXPRESS.R_StagingDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-OHPI2QJ\SQLEXPRESS.R_StagingDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Extract item data to DW staging\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract item data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[item_nbr]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract item data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[item_nbr]"
+                      lineageId="Package\Extract item data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[item_nbr]"
+                      name="item_nbr"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract item data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[family]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract item data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[family]"
+                      length="255"
+                      lineageId="Package\Extract item data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[family]"
+                      name="family"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract item data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[class]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract item data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[class]"
+                      lineageId="Package\Extract item data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[class]"
+                      name="class"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract item data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[perishable]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract item data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[perishable]"
+                      lineageId="Package\Extract item data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[perishable]"
+                      name="perishable"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Extract item data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[item_nbr]"
+                      dataType="r8"
+                      name="item_nbr" />
+                    <externalMetadataColumn
+                      refId="Package\Extract item data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[family]"
+                      dataType="wstr"
+                      length="255"
+                      name="family" />
+                    <externalMetadataColumn
+                      refId="Package\Extract item data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[class]"
+                      dataType="r8"
+                      name="class" />
+                    <externalMetadataColumn
+                      refId="Package\Extract item data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[perishable]"
+                      dataType="r8"
+                      name="perishable" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Extract item data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract item data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[item_nbr]"
+                      dataType="r8"
+                      lineageId="Package\Extract item data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[item_nbr]"
+                      name="item_nbr" />
+                    <outputColumn
+                      refId="Package\Extract item data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[family]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Extract item data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[family]"
+                      name="family" />
+                    <outputColumn
+                      refId="Package\Extract item data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[class]"
+                      dataType="r8"
+                      lineageId="Package\Extract item data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[class]"
+                      name="class" />
+                    <outputColumn
+                      refId="Package\Extract item data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[perishable]"
+                      dataType="r8"
+                      lineageId="Package\Extract item data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[perishable]"
+                      name="perishable" />
+                    <outputColumn
+                      refId="Package\Extract item data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract item data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract item data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract item data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Extract item data to DW staging.Paths[OLE DB Source Output]"
+              endId="Package\Extract item data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Extract item data to DW staging\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Extract the Date Data to DW staging"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{0F5A86BB-88BF-4B99-8F6A-76B35C738090}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Extract the Date Data to DW staging"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\Extract the Date Data to DW staging.EventHandlers[OnPreExecute]"
+          DTS:CreationName="OnPreExecute"
+          DTS:DTSID="{48ACACA8-2544-4337-8EF3-2BA4F69C32B4}"
+          DTS:EventID="0"
+          DTS:EventName="OnPreExecute"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{5C6CE8E6-88AF-416F-8F98-1206E8AD57E4}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Extract the Date Data to DW staging.EventHandlers[OnPreExecute]\Execute SQL Task"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{A8AA6AA4-7AE6-4A11-A322-2B48B15657DE}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Execute SQL Task">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{5C377D30-C57D-4A64-8145-9E45D3CF770A}"
+                  SQLTask:SqlStatementSource="truncate table DateStaging&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Extract the Date Data to DW staging\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[DateStaging]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-OHPI2QJ\SQLEXPRESS.R_Staging_DWWWWWW]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-OHPI2QJ\SQLEXPRESS.R_Staging_DWWWWWW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DateKey]"
+                      cachedDataType="i4"
+                      cachedName="DateKey"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateKey]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[DateKey]" />
+                    <inputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Date"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Date]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[Date]" />
+                    <inputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FullDateUK]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="FullDateUK"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FullDateUK]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[FullDateUK]" />
+                    <inputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FullDateUSA]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="FullDateUSA"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FullDateUSA]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[FullDateUSA]" />
+                    <inputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DayOfMonth]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="DayOfMonth"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DayOfMonth]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[DayOfMonth]" />
+                    <inputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DaySuffix]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="4"
+                      cachedName="DaySuffix"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DaySuffix]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[DaySuffix]" />
+                    <inputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DayName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="9"
+                      cachedName="DayName"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DayName]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[DayName]" />
+                    <inputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DayOfWeekUSA]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="DayOfWeekUSA"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DayOfWeekUSA]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[DayOfWeekUSA]" />
+                    <inputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DayOfWeekUK]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="DayOfWeekUK"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DayOfWeekUK]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[DayOfWeekUK]" />
+                    <inputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DayOfWeekInMonth]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="DayOfWeekInMonth"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DayOfWeekInMonth]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[DayOfWeekInMonth]" />
+                    <inputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DayOfWeekInYear]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="DayOfWeekInYear"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DayOfWeekInYear]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[DayOfWeekInYear]" />
+                    <inputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DayOfQuarter]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="DayOfQuarter"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DayOfQuarter]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[DayOfQuarter]" />
+                    <inputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DayOfYear]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="DayOfYear"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DayOfYear]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[DayOfYear]" />
+                    <inputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[WeekOfMonth]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="WeekOfMonth"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[WeekOfMonth]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[WeekOfMonth]" />
+                    <inputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[WeekOfQuarter]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="WeekOfQuarter"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[WeekOfQuarter]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[WeekOfQuarter]" />
+                    <inputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[WeekOfYear]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="WeekOfYear"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[WeekOfYear]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[WeekOfYear]" />
+                    <inputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Month]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="Month"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Month]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[Month]" />
+                    <inputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[MonthName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="9"
+                      cachedName="MonthName"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MonthName]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[MonthName]" />
+                    <inputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[MonthOfQuarter]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="MonthOfQuarter"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MonthOfQuarter]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[MonthOfQuarter]" />
+                    <inputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Quarter]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="Quarter"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Quarter]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[Quarter]" />
+                    <inputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[QuarterName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="9"
+                      cachedName="QuarterName"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[QuarterName]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[QuarterName]" />
+                    <inputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Year]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="4"
+                      cachedName="Year"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Year]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[Year]" />
+                    <inputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[YearName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="7"
+                      cachedName="YearName"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[YearName]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[YearName]" />
+                    <inputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[MonthYear]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="MonthYear"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MonthYear]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[MonthYear]" />
+                    <inputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[MMYYYY]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="6"
+                      cachedName="MMYYYY"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MMYYYY]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[MMYYYY]" />
+                    <inputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FirstDayOfMonth]"
+                      cachedDataType="dbDate"
+                      cachedName="FirstDayOfMonth"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FirstDayOfMonth]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[FirstDayOfMonth]" />
+                    <inputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LastDayOfMonth]"
+                      cachedDataType="dbDate"
+                      cachedName="LastDayOfMonth"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastDayOfMonth]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[LastDayOfMonth]" />
+                    <inputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FirstDayOfQuarter]"
+                      cachedDataType="dbDate"
+                      cachedName="FirstDayOfQuarter"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FirstDayOfQuarter]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[FirstDayOfQuarter]" />
+                    <inputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LastDayOfQuarter]"
+                      cachedDataType="dbDate"
+                      cachedName="LastDayOfQuarter"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastDayOfQuarter]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[LastDayOfQuarter]" />
+                    <inputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FirstDayOfYear]"
+                      cachedDataType="dbDate"
+                      cachedName="FirstDayOfYear"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FirstDayOfYear]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[FirstDayOfYear]" />
+                    <inputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LastDayOfYear]"
+                      cachedDataType="dbDate"
+                      cachedName="LastDayOfYear"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastDayOfYear]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[LastDayOfYear]" />
+                    <inputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[IsHolidaySL]"
+                      cachedDataType="bool"
+                      cachedName="IsHolidaySL"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IsHolidaySL]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[IsHolidaySL]" />
+                    <inputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[IsWeekday]"
+                      cachedDataType="bool"
+                      cachedName="IsWeekday"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IsWeekday]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[IsWeekday]" />
+                    <inputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[HolidaySL]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="HolidaySL"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[HolidaySL]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[HolidaySL]" />
+                    <inputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[isCurrentDay]"
+                      cachedDataType="i4"
+                      cachedName="isCurrentDay"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[isCurrentDay]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[isCurrentDay]" />
+                    <inputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[isDataAvailable]"
+                      cachedDataType="i4"
+                      cachedName="isDataAvailable"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[isDataAvailable]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[isDataAvailable]" />
+                    <inputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[isLatestDataAvailable]"
+                      cachedDataType="i4"
+                      cachedName="isLatestDataAvailable"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[isLatestDataAvailable]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[isLatestDataAvailable]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateKey]"
+                      dataType="i4"
+                      name="DateKey" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Date]"
+                      dataType="dbTimeStamp"
+                      name="Date" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FullDateUK]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="FullDateUK" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FullDateUSA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="FullDateUSA" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DayOfMonth]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="DayOfMonth" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DaySuffix]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="DaySuffix" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DayName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      name="DayName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DayOfWeekUSA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="DayOfWeekUSA" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DayOfWeekUK]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="DayOfWeekUK" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DayOfWeekInMonth]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="DayOfWeekInMonth" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DayOfWeekInYear]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="DayOfWeekInYear" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DayOfQuarter]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="DayOfQuarter" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DayOfYear]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="DayOfYear" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[WeekOfMonth]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="WeekOfMonth" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[WeekOfQuarter]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="WeekOfQuarter" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[WeekOfYear]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="WeekOfYear" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Month]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="Month" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MonthName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      name="MonthName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MonthOfQuarter]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="MonthOfQuarter" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Quarter]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Quarter" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[QuarterName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      name="QuarterName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Year]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="Year" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[YearName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="7"
+                      name="YearName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MonthYear]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="MonthYear" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MMYYYY]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      name="MMYYYY" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FirstDayOfMonth]"
+                      dataType="dbDate"
+                      name="FirstDayOfMonth" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastDayOfMonth]"
+                      dataType="dbDate"
+                      name="LastDayOfMonth" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FirstDayOfQuarter]"
+                      dataType="dbDate"
+                      name="FirstDayOfQuarter" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastDayOfQuarter]"
+                      dataType="dbDate"
+                      name="LastDayOfQuarter" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FirstDayOfYear]"
+                      dataType="dbDate"
+                      name="FirstDayOfYear" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastDayOfYear]"
+                      dataType="dbDate"
+                      name="LastDayOfYear" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IsHolidaySL]"
+                      dataType="bool"
+                      name="IsHolidaySL" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IsWeekday]"
+                      dataType="bool"
+                      name="IsWeekday" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[HolidaySL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="HolidaySL" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[isCurrentDay]"
+                      dataType="i4"
+                      name="isCurrentDay" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[isDataAvailable]"
+                      dataType="i4"
+                      name="isDataAvailable" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[isLatestDataAvailable]"
+                      dataType="i4"
+                      name="isLatestDataAvailable" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract the Date Data to DW staging\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DimDate]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Extract the Date Data to DW staging\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-OHPI2QJ\SQLEXPRESS.R_StagingDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-OHPI2QJ\SQLEXPRESS.R_StagingDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[DateKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DateKey]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[DateKey]"
+                      name="DateKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[Date]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Date]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[Date]"
+                      name="Date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[FullDateUK]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FullDateUK]"
+                      length="10"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[FullDateUK]"
+                      name="FullDateUK"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[FullDateUSA]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FullDateUSA]"
+                      length="10"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[FullDateUSA]"
+                      name="FullDateUSA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[DayOfMonth]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DayOfMonth]"
+                      length="2"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[DayOfMonth]"
+                      name="DayOfMonth"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[DaySuffix]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DaySuffix]"
+                      length="4"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[DaySuffix]"
+                      name="DaySuffix"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[DayName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DayName]"
+                      length="9"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[DayName]"
+                      name="DayName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[DayOfWeekUSA]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DayOfWeekUSA]"
+                      length="1"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[DayOfWeekUSA]"
+                      name="DayOfWeekUSA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[DayOfWeekUK]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DayOfWeekUK]"
+                      length="1"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[DayOfWeekUK]"
+                      name="DayOfWeekUK"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[DayOfWeekInMonth]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DayOfWeekInMonth]"
+                      length="2"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[DayOfWeekInMonth]"
+                      name="DayOfWeekInMonth"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[DayOfWeekInYear]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DayOfWeekInYear]"
+                      length="2"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[DayOfWeekInYear]"
+                      name="DayOfWeekInYear"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[DayOfQuarter]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DayOfQuarter]"
+                      length="3"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[DayOfQuarter]"
+                      name="DayOfQuarter"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[DayOfYear]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DayOfYear]"
+                      length="3"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[DayOfYear]"
+                      name="DayOfYear"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[WeekOfMonth]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[WeekOfMonth]"
+                      length="1"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[WeekOfMonth]"
+                      name="WeekOfMonth"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[WeekOfQuarter]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[WeekOfQuarter]"
+                      length="2"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[WeekOfQuarter]"
+                      name="WeekOfQuarter"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[WeekOfYear]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[WeekOfYear]"
+                      length="2"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[WeekOfYear]"
+                      name="WeekOfYear"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[Month]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Month]"
+                      length="2"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[Month]"
+                      name="Month"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[MonthName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[MonthName]"
+                      length="9"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[MonthName]"
+                      name="MonthName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[MonthOfQuarter]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[MonthOfQuarter]"
+                      length="2"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[MonthOfQuarter]"
+                      name="MonthOfQuarter"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[Quarter]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Quarter]"
+                      length="1"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[Quarter]"
+                      name="Quarter"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[QuarterName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[QuarterName]"
+                      length="9"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[QuarterName]"
+                      name="QuarterName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[Year]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Year]"
+                      length="4"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[Year]"
+                      name="Year"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[YearName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[YearName]"
+                      length="7"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[YearName]"
+                      name="YearName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[MonthYear]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[MonthYear]"
+                      length="10"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[MonthYear]"
+                      name="MonthYear"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[MMYYYY]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[MMYYYY]"
+                      length="6"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[MMYYYY]"
+                      name="MMYYYY"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[FirstDayOfMonth]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FirstDayOfMonth]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[FirstDayOfMonth]"
+                      name="FirstDayOfMonth"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[LastDayOfMonth]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LastDayOfMonth]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[LastDayOfMonth]"
+                      name="LastDayOfMonth"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[FirstDayOfQuarter]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FirstDayOfQuarter]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[FirstDayOfQuarter]"
+                      name="FirstDayOfQuarter"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[LastDayOfQuarter]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LastDayOfQuarter]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[LastDayOfQuarter]"
+                      name="LastDayOfQuarter"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[FirstDayOfYear]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FirstDayOfYear]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[FirstDayOfYear]"
+                      name="FirstDayOfYear"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[LastDayOfYear]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LastDayOfYear]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[LastDayOfYear]"
+                      name="LastDayOfYear"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[IsHolidaySL]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IsHolidaySL]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[IsHolidaySL]"
+                      name="IsHolidaySL"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[IsWeekday]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IsWeekday]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[IsWeekday]"
+                      name="IsWeekday"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[HolidaySL]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[HolidaySL]"
+                      length="50"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[HolidaySL]"
+                      name="HolidaySL"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[isCurrentDay]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[isCurrentDay]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[isCurrentDay]"
+                      name="isCurrentDay"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[isDataAvailable]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[isDataAvailable]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[isDataAvailable]"
+                      name="isDataAvailable"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[isLatestDataAvailable]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[isLatestDataAvailable]"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[isLatestDataAvailable]"
+                      name="isLatestDataAvailable"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DateKey]"
+                      dataType="i4"
+                      name="DateKey" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Date]"
+                      dataType="dbTimeStamp"
+                      name="Date" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FullDateUK]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="FullDateUK" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FullDateUSA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="FullDateUSA" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DayOfMonth]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="DayOfMonth" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DaySuffix]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="DaySuffix" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DayName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      name="DayName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DayOfWeekUSA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="DayOfWeekUSA" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DayOfWeekUK]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="DayOfWeekUK" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DayOfWeekInMonth]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="DayOfWeekInMonth" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DayOfWeekInYear]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="DayOfWeekInYear" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DayOfQuarter]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="DayOfQuarter" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DayOfYear]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="DayOfYear" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[WeekOfMonth]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="WeekOfMonth" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[WeekOfQuarter]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="WeekOfQuarter" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[WeekOfYear]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="WeekOfYear" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Month]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="Month" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[MonthName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      name="MonthName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[MonthOfQuarter]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="MonthOfQuarter" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Quarter]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Quarter" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[QuarterName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      name="QuarterName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Year]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="Year" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[YearName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="7"
+                      name="YearName" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[MonthYear]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="MonthYear" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[MMYYYY]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      name="MMYYYY" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FirstDayOfMonth]"
+                      dataType="dbDate"
+                      name="FirstDayOfMonth" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LastDayOfMonth]"
+                      dataType="dbDate"
+                      name="LastDayOfMonth" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FirstDayOfQuarter]"
+                      dataType="dbDate"
+                      name="FirstDayOfQuarter" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LastDayOfQuarter]"
+                      dataType="dbDate"
+                      name="LastDayOfQuarter" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FirstDayOfYear]"
+                      dataType="dbDate"
+                      name="FirstDayOfYear" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LastDayOfYear]"
+                      dataType="dbDate"
+                      name="LastDayOfYear" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IsHolidaySL]"
+                      dataType="bool"
+                      name="IsHolidaySL" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IsWeekday]"
+                      dataType="bool"
+                      name="IsWeekday" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[HolidaySL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="HolidaySL" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[isCurrentDay]"
+                      dataType="i4"
+                      name="isCurrentDay" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[isDataAvailable]"
+                      dataType="i4"
+                      name="isDataAvailable" />
+                    <externalMetadataColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[isLatestDataAvailable]"
+                      dataType="i4"
+                      name="isLatestDataAvailable" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DateKey]"
+                      dataType="i4"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DateKey]"
+                      name="DateKey" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Date]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Date]"
+                      name="Date" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FullDateUK]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FullDateUK]"
+                      name="FullDateUK" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FullDateUSA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FullDateUSA]"
+                      name="FullDateUSA" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DayOfMonth]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DayOfMonth]"
+                      name="DayOfMonth" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DaySuffix]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DaySuffix]"
+                      name="DaySuffix" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DayName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DayName]"
+                      name="DayName" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DayOfWeekUSA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DayOfWeekUSA]"
+                      name="DayOfWeekUSA" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DayOfWeekUK]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DayOfWeekUK]"
+                      name="DayOfWeekUK" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DayOfWeekInMonth]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DayOfWeekInMonth]"
+                      name="DayOfWeekInMonth" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DayOfWeekInYear]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DayOfWeekInYear]"
+                      name="DayOfWeekInYear" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DayOfQuarter]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DayOfQuarter]"
+                      name="DayOfQuarter" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DayOfYear]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DayOfYear]"
+                      name="DayOfYear" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[WeekOfMonth]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[WeekOfMonth]"
+                      name="WeekOfMonth" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[WeekOfQuarter]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[WeekOfQuarter]"
+                      name="WeekOfQuarter" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[WeekOfYear]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[WeekOfYear]"
+                      name="WeekOfYear" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Month]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Month]"
+                      name="Month" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[MonthName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[MonthName]"
+                      name="MonthName" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[MonthOfQuarter]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[MonthOfQuarter]"
+                      name="MonthOfQuarter" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Quarter]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Quarter]"
+                      name="Quarter" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[QuarterName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[QuarterName]"
+                      name="QuarterName" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Year]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Year]"
+                      name="Year" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[YearName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="7"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[YearName]"
+                      name="YearName" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[MonthYear]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[MonthYear]"
+                      name="MonthYear" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[MMYYYY]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[MMYYYY]"
+                      name="MMYYYY" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FirstDayOfMonth]"
+                      dataType="dbDate"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FirstDayOfMonth]"
+                      name="FirstDayOfMonth" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LastDayOfMonth]"
+                      dataType="dbDate"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LastDayOfMonth]"
+                      name="LastDayOfMonth" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FirstDayOfQuarter]"
+                      dataType="dbDate"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FirstDayOfQuarter]"
+                      name="FirstDayOfQuarter" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LastDayOfQuarter]"
+                      dataType="dbDate"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LastDayOfQuarter]"
+                      name="LastDayOfQuarter" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FirstDayOfYear]"
+                      dataType="dbDate"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FirstDayOfYear]"
+                      name="FirstDayOfYear" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LastDayOfYear]"
+                      dataType="dbDate"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LastDayOfYear]"
+                      name="LastDayOfYear" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IsHolidaySL]"
+                      dataType="bool"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IsHolidaySL]"
+                      name="IsHolidaySL" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IsWeekday]"
+                      dataType="bool"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IsWeekday]"
+                      name="IsWeekday" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[HolidaySL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[HolidaySL]"
+                      name="HolidaySL" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[isCurrentDay]"
+                      dataType="i4"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[isCurrentDay]"
+                      name="isCurrentDay" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[isDataAvailable]"
+                      dataType="i4"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[isDataAvailable]"
+                      name="isDataAvailable" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[isLatestDataAvailable]"
+                      dataType="i4"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[isLatestDataAvailable]"
+                      name="isLatestDataAvailable" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Extract the Date Data to DW staging.Paths[OLE DB Source Output]"
+              endId="Package\Extract the Date Data to DW staging\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Extract the Date Data to DW staging\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{352A1943-44A7-4601-8667-C0AE231D87D6}"
+      DTS:From="Package\Extract the Date Data to DW staging"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Extract item data to DW staging" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="251,42"
+          Id="Package\Extract the Date Data to DW staging"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="230,42"
+          Id="Package\Extract item data to DW staging"
+          TopLeft="109.5,75.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="131,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="93.5,28"
+              Start="0,0"
+              End="93.5,20.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10"
+                    Point2="0,14"
+                    Point3="4,14" />
+                  <mssgle:LineSegment
+                    End="89.5,14" />
+                  <mssgle:CubicBezierSegment
+                    Point1="89.5,14"
+                    Point2="93.5,14"
+                    Point3="93.5,18" />
+                  <mssgle:LineSegment
+                    End="93.5,20.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Extract the Date Data to DW staging">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Extract the Date Data to DW staging\OLE DB Source"
+          TopLeft="84.5,53.5" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Extract the Date Data to DW staging\OLE DB Destination"
+          TopLeft="186.5,172.5" />
+        <EdgeLayout
+          Id="Package\Extract the Date Data to DW staging.Paths[OLE DB Source Output]"
+          TopLeft="159.5,95.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="112.5,77"
+              Start="0,0"
+              End="112.5,69.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,34.5"
+                    Point2="0,38.5"
+                    Point3="4,38.5" />
+                  <mssgle:LineSegment
+                    End="108.5,38.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="108.5,38.5"
+                    Point2="112.5,38.5"
+                    Point3="112.5,42.5" />
+                  <mssgle:LineSegment
+                    End="112.5,69.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract the Date Data to DW staging\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract the Date Data to DW staging\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <DtsEventHandler
+    design-time-name="Package\Extract the Date Data to DW staging.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="163,42"
+          Id="Package\Extract the Date Data to DW staging.EventHandlers[OnPreExecute]\Execute SQL Task"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <TaskHost
+    design-time-name="Package\Extract item data to DW staging">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Extract item data to DW staging\OLE DB Source"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Extract item data to DW staging\OLE DB Destination"
+          TopLeft="216.5,123.5" />
+        <EdgeLayout
+          Id="Package\Extract item data to DW staging.Paths[OLE DB Source Output]"
+          TopLeft="80.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="221.5,76"
+              Start="0,0"
+              End="221.5,68.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,34"
+                    Point2="0,38"
+                    Point3="4,38" />
+                  <mssgle:LineSegment
+                    End="217.5,38" />
+                  <mssgle:CubicBezierSegment
+                    Point1="217.5,38"
+                    Point2="221.5,38"
+                    Point3="221.5,42" />
+                  <mssgle:LineSegment
+                    End="221.5,68.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract item data to DW staging\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract item data to DW staging\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <DtsEventHandler
+    design-time-name="Package\Extract item data to DW staging.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="163,42"
+          Id="Package\Extract item data to DW staging.EventHandlers[OnPreExecute]\Execute SQL Task"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+</Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
