@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+<DataProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/sqlserver/2008/DataDebugger/">
+  <ProfileVersion>1.0</ProfileVersion>
+  <DataSources>
+    <DtsDataSource ID="{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}" Name="DESKTOP-OHPI2QJ\SQLEXPRESS.R_Staging_DWWWWWW">
+      <DtsConnectionManagerID>DESKTOP-OHPI2QJ\SQLEXPRESS.R_Staging_DWWWWWW</DtsConnectionManagerID>
+    </DtsDataSource>
+    <DtsDataSource ID="{783BE40D-8DDD-4E11-BD95-041F84545396}" Name="ItemDataProfile.txt">
+      <DtsConnectionManagerID>ItemDataProfile.txt</DtsConnectionManagerID>
+    </DtsDataSource>
+    <DtsDataSource ID="{29C28CA6-5E8A-43CB-918D-D20067FBD785}" Name="New Text Document.txt">
+      <DtsConnectionManagerID>New Text Document.txt</DtsConnectionManagerID>
+    </DtsDataSource>
+    <DtsDataSource ID="{78ED1135-BDB9-48FA-A5E6-FD945A331F26}" Name="StoreDataProfile.txt">
+      <DtsConnectionManagerID>StoreDataProfile.txt</DtsConnectionManagerID>
+    </DtsDataSource>
+    <DtsDataSource ID="{D8CE8424-6BCF-4E92-9168-C3D31A376DC1}" Name="TestDataProfile.txt">
+      <DtsConnectionManagerID>TestDataProfile.txt</DtsConnectionManagerID>
+    </DtsDataSource>
+    <DtsDataSource ID="{AB413657-1696-4C2F-8638-D0FCBDD1DAF1}" Name="TrainDataProfile.txt">
+      <DtsConnectionManagerID>TrainDataProfile.txt</DtsConnectionManagerID>
+    </DtsDataSource>
+    <DtsDataSource ID="{8D495944-0495-43CA-8D5B-083CC98AF504}" Name="TransactionDataProfile.txt">
+      <DtsConnectionManagerID>TransactionDataProfile.txt</DtsConnectionManagerID>
+    </DtsDataSource>
+  </DataSources>
+  <DataProfileInput>
+    <ProfileMode>Exact</ProfileMode>
+    <Timeout>0</Timeout>
+    <Requests>
+      <ColumnNullRatioProfileRequest ID="NullRatioReq">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table Schema="dbo" Table="TransactionStaging" />
+        <Column IsWildCard="true" />
+      </ColumnNullRatioProfileRequest>
+      <ColumnStatisticsProfileRequest ID="StatisticsReq">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table Schema="dbo" Table="TransactionStaging" />
+        <Column IsWildCard="true" />
+      </ColumnStatisticsProfileRequest>
+      <ColumnLengthDistributionProfileRequest ID="LengthDistReq">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table Schema="dbo" Table="TransactionStaging" />
+        <Column IsWildCard="true" />
+        <IgnoreLeadingSpace>false</IgnoreLeadingSpace>
+        <IgnoreTrailingSpace>true</IgnoreTrailingSpace>
+      </ColumnLengthDistributionProfileRequest>
+      <ColumnValueDistributionProfileRequest ID="ValueDistReq">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table Schema="dbo" Table="TransactionStaging" />
+        <Column IsWildCard="true" />
+        <Option>FrequentValues</Option>
+        <FrequentValueThreshold>0.001</FrequentValueThreshold>
+      </ColumnValueDistributionProfileRequest>
+      <ColumnPatternProfileRequest ID="PatternReq">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table Schema="dbo" Table="TransactionStaging" />
+        <Column IsWildCard="true" />
+        <MaxNumberOfPatterns>10</MaxNumberOfPatterns>
+        <PercentageDataCoverageDesired>95</PercentageDataCoverageDesired>
+        <CaseSensitive>false</CaseSensitive>
+        <Delimiters> \t\r\n</Delimiters>
+        <Symbols>,.;:-"'`~=&amp;/\\@!?()&lt;&gt;[]{}|#*^%</Symbols>
+        <TagTableName />
+      </ColumnPatternProfileRequest>
+      <CandidateKeyProfileRequest ID="KeyReq">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table Schema="dbo" Table="TransactionStaging" />
+        <KeyColumns>
+          <Column IsWildCard="true" />
+        </KeyColumns>
+        <ThresholdSetting>Specified</ThresholdSetting>
+        <KeyStrengthThreshold>0.95</KeyStrengthThreshold>
+        <VerifyOutputInFastMode>false</VerifyOutputInFastMode>
+        <MaxNumberOfViolations>100</MaxNumberOfViolations>
+      </CandidateKeyProfileRequest>
+      <FunctionalDependencyProfileRequest ID="FDReq">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table Schema="dbo" Table="TransactionStaging" />
+        <DeterminantColumns>
+          <Column IsWildCard="true" />
+        </DeterminantColumns>
+        <DependentColumn IsWildCard="true" />
+        <ThresholdSetting>Specified</ThresholdSetting>
+        <FDStrengthThreshold>0.95</FDStrengthThreshold>
+        <VerifyOutputInFastMode>false</VerifyOutputInFastMode>
+        <MaxNumberOfViolations>100</MaxNumberOfViolations>
+      </FunctionalDependencyProfileRequest>
+    </Requests>
+  </DataProfileInput>
+  <DataProfileOutput>
+    <Profiles>
+      <ColumnNullRatioProfile ProfileRequestID="NullRatioReq" IsExact="true">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table DataSource="DESKTOP-OHPI2QJ\SQLEXPRESS" Database="R_Staging_DWWWWWW" Schema="dbo" Table="TransactionStaging" RowCount="65535" />
+        <Column Name="date" SqlDbType="DateTime" MaxLength="0" Precision="255" Scale="255" LCID="-1" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <NullCount>0</NullCount>
+      </ColumnNullRatioProfile>
+      <ColumnNullRatioProfile ProfileRequestID="NullRatioReq" IsExact="true">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table DataSource="DESKTOP-OHPI2QJ\SQLEXPRESS" Database="R_Staging_DWWWWWW" Schema="dbo" Table="TransactionStaging" RowCount="65535" />
+        <Column Name="store_nbr" SqlDbType="Float" MaxLength="0" Precision="53" Scale="255" LCID="-1" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <NullCount>0</NullCount>
+      </ColumnNullRatioProfile>
+      <ColumnNullRatioProfile ProfileRequestID="NullRatioReq" IsExact="true">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table DataSource="DESKTOP-OHPI2QJ\SQLEXPRESS" Database="R_Staging_DWWWWWW" Schema="dbo" Table="TransactionStaging" RowCount="65535" />
+        <Column Name="transactions" SqlDbType="Float" MaxLength="0" Precision="53" Scale="255" LCID="-1" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <NullCount>0</NullCount>
+      </ColumnNullRatioProfile>
+      <ColumnNullRatioProfile ProfileRequestID="NullRatioReq" IsExact="true">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table DataSource="DESKTOP-OHPI2QJ\SQLEXPRESS" Database="R_Staging_DWWWWWW" Schema="dbo" Table="TransactionStaging" RowCount="65535" />
+        <Column Name="id" SqlDbType="Float" MaxLength="0" Precision="53" Scale="255" LCID="-1" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <NullCount>0</NullCount>
+      </ColumnNullRatioProfile>
+      <ColumnStatisticsProfile IsExact="true" ProfileRequestID="StatisticsReq">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table DataSource="DESKTOP-OHPI2QJ\SQLEXPRESS" Database="R_Staging_DWWWWWW" Schema="dbo" Table="TransactionStaging" RowCount="65535" />
+        <Column Name="date" SqlDbType="DateTime" MaxLength="0" Precision="255" Scale="255" LCID="-1" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <MinValue>2013-01-01T00:00:00.0000000</MinValue>
+        <MaxValue>2016-09-08T00:00:00.0000000</MaxValue>
+      </ColumnStatisticsProfile>
+      <ColumnStatisticsProfile IsExact="true" ProfileRequestID="StatisticsReq">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table DataSource="DESKTOP-OHPI2QJ\SQLEXPRESS" Database="R_Staging_DWWWWWW" Schema="dbo" Table="TransactionStaging" RowCount="65535" />
+        <Column Name="store_nbr" SqlDbType="Float" MaxLength="0" Precision="53" Scale="255" LCID="-1" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <MinValue>1</MinValue>
+        <MaxValue>54</MaxValue>
+        <Mean>26.8525520714122</Mean>
+        <StdDev>15.6394917193147</StdDev>
+      </ColumnStatisticsProfile>
+      <ColumnStatisticsProfile IsExact="true" ProfileRequestID="StatisticsReq">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table DataSource="DESKTOP-OHPI2QJ\SQLEXPRESS" Database="R_Staging_DWWWWWW" Schema="dbo" Table="TransactionStaging" RowCount="65535" />
+        <Column Name="transactions" SqlDbType="Float" MaxLength="0" Precision="53" Scale="255" LCID="-1" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <MinValue>5</MinValue>
+        <MaxValue>8359</MaxValue>
+        <Mean>1700.82737468528</Mean>
+        <StdDev>960.744172129085</StdDev>
+      </ColumnStatisticsProfile>
+      <ColumnStatisticsProfile IsExact="true" ProfileRequestID="StatisticsReq">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table DataSource="DESKTOP-OHPI2QJ\SQLEXPRESS" Database="R_Staging_DWWWWWW" Schema="dbo" Table="TransactionStaging" RowCount="65535" />
+        <Column Name="id" SqlDbType="Float" MaxLength="0" Precision="53" Scale="255" LCID="-1" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <MinValue>1</MinValue>
+        <MaxValue>65535</MaxValue>
+        <Mean>32768</Mean>
+        <StdDev>18918.3249434686</StdDev>
+      </ColumnStatisticsProfile>
+      <ColumnValueDistributionProfile IsExact="true" ProfileRequestID="ValueDistReq">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table DataSource="DESKTOP-OHPI2QJ\SQLEXPRESS" Database="R_Staging_DWWWWWW" Schema="dbo" Table="TransactionStaging" RowCount="65535" />
+        <Column Name="date" SqlDbType="DateTime" MaxLength="0" Precision="255" Scale="255" LCID="-1" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <NumberOfDistinctValues>1342</NumberOfDistinctValues>
+      </ColumnValueDistributionProfile>
+    </Profiles>
+  </DataProfileOutput>
+</DataProfile>

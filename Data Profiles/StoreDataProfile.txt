@@ -1,0 +1,956 @@
+<?xml version="1.0"?>
+<DataProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/sqlserver/2008/DataDebugger/">
+  <ProfileVersion>1.0</ProfileVersion>
+  <DataSources>
+    <DtsDataSource ID="{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}" Name="DESKTOP-OHPI2QJ\SQLEXPRESS.R_Staging_DWWWWWW">
+      <DtsConnectionManagerID>DESKTOP-OHPI2QJ\SQLEXPRESS.R_Staging_DWWWWWW</DtsConnectionManagerID>
+    </DtsDataSource>
+    <DtsDataSource ID="{783BE40D-8DDD-4E11-BD95-041F84545396}" Name="ItemDataProfile.txt">
+      <DtsConnectionManagerID>ItemDataProfile.txt</DtsConnectionManagerID>
+    </DtsDataSource>
+    <DtsDataSource ID="{29C28CA6-5E8A-43CB-918D-D20067FBD785}" Name="New Text Document.txt">
+      <DtsConnectionManagerID>New Text Document.txt</DtsConnectionManagerID>
+    </DtsDataSource>
+    <DtsDataSource ID="{78ED1135-BDB9-48FA-A5E6-FD945A331F26}" Name="StoreDataProfile.txt">
+      <DtsConnectionManagerID>StoreDataProfile.txt</DtsConnectionManagerID>
+    </DtsDataSource>
+    <DtsDataSource ID="{D8CE8424-6BCF-4E92-9168-C3D31A376DC1}" Name="TestDataProfile.txt">
+      <DtsConnectionManagerID>TestDataProfile.txt</DtsConnectionManagerID>
+    </DtsDataSource>
+    <DtsDataSource ID="{AB413657-1696-4C2F-8638-D0FCBDD1DAF1}" Name="TrainDataProfile.txt">
+      <DtsConnectionManagerID>TrainDataProfile.txt</DtsConnectionManagerID>
+    </DtsDataSource>
+    <DtsDataSource ID="{8D495944-0495-43CA-8D5B-083CC98AF504}" Name="TransactionDataProfile.txt">
+      <DtsConnectionManagerID>TransactionDataProfile.txt</DtsConnectionManagerID>
+    </DtsDataSource>
+  </DataSources>
+  <DataProfileInput>
+    <ProfileMode>Exact</ProfileMode>
+    <Timeout>0</Timeout>
+    <Requests>
+      <ColumnNullRatioProfileRequest ID="NullRatioReq">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table Schema="dbo" Table="StoreStaging" />
+        <Column IsWildCard="true" />
+      </ColumnNullRatioProfileRequest>
+      <ColumnStatisticsProfileRequest ID="StatisticsReq">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table Schema="dbo" Table="StoreStaging" />
+        <Column IsWildCard="true" />
+      </ColumnStatisticsProfileRequest>
+      <ColumnLengthDistributionProfileRequest ID="LengthDistReq">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table Schema="dbo" Table="StoreStaging" />
+        <Column IsWildCard="true" />
+        <IgnoreLeadingSpace>false</IgnoreLeadingSpace>
+        <IgnoreTrailingSpace>true</IgnoreTrailingSpace>
+      </ColumnLengthDistributionProfileRequest>
+      <ColumnValueDistributionProfileRequest ID="ValueDistReq">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table Schema="dbo" Table="StoreStaging" />
+        <Column IsWildCard="true" />
+        <Option>FrequentValues</Option>
+        <FrequentValueThreshold>0.001</FrequentValueThreshold>
+      </ColumnValueDistributionProfileRequest>
+      <ColumnPatternProfileRequest ID="PatternReq">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table Schema="dbo" Table="StoreStaging" />
+        <Column IsWildCard="true" />
+        <MaxNumberOfPatterns>10</MaxNumberOfPatterns>
+        <PercentageDataCoverageDesired>95</PercentageDataCoverageDesired>
+        <CaseSensitive>false</CaseSensitive>
+        <Delimiters> \t\r\n</Delimiters>
+        <Symbols>,.;:-"'`~=&amp;/\\@!?()&lt;&gt;[]{}|#*^%</Symbols>
+        <TagTableName />
+      </ColumnPatternProfileRequest>
+      <CandidateKeyProfileRequest ID="KeyReq">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table Schema="dbo" Table="StoreStaging" />
+        <KeyColumns>
+          <Column IsWildCard="true" />
+        </KeyColumns>
+        <ThresholdSetting>Specified</ThresholdSetting>
+        <KeyStrengthThreshold>0.95</KeyStrengthThreshold>
+        <VerifyOutputInFastMode>false</VerifyOutputInFastMode>
+        <MaxNumberOfViolations>100</MaxNumberOfViolations>
+      </CandidateKeyProfileRequest>
+      <FunctionalDependencyProfileRequest ID="FDReq">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table Schema="dbo" Table="StoreStaging" />
+        <DeterminantColumns>
+          <Column IsWildCard="true" />
+        </DeterminantColumns>
+        <DependentColumn IsWildCard="true" />
+        <ThresholdSetting>Specified</ThresholdSetting>
+        <FDStrengthThreshold>0.95</FDStrengthThreshold>
+        <VerifyOutputInFastMode>false</VerifyOutputInFastMode>
+        <MaxNumberOfViolations>100</MaxNumberOfViolations>
+      </FunctionalDependencyProfileRequest>
+    </Requests>
+  </DataProfileInput>
+  <DataProfileOutput>
+    <Profiles>
+      <ColumnNullRatioProfile ProfileRequestID="NullRatioReq" IsExact="true">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table DataSource="DESKTOP-OHPI2QJ\SQLEXPRESS" Database="R_Staging_DWWWWWW" Schema="dbo" Table="StoreStaging" RowCount="54" />
+        <Column Name="store_nbr" SqlDbType="NVarChar" MaxLength="50" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <NullCount>0</NullCount>
+      </ColumnNullRatioProfile>
+      <ColumnNullRatioProfile ProfileRequestID="NullRatioReq" IsExact="true">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table DataSource="DESKTOP-OHPI2QJ\SQLEXPRESS" Database="R_Staging_DWWWWWW" Schema="dbo" Table="StoreStaging" RowCount="54" />
+        <Column Name="city" SqlDbType="NVarChar" MaxLength="50" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <NullCount>0</NullCount>
+      </ColumnNullRatioProfile>
+      <ColumnNullRatioProfile ProfileRequestID="NullRatioReq" IsExact="true">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table DataSource="DESKTOP-OHPI2QJ\SQLEXPRESS" Database="R_Staging_DWWWWWW" Schema="dbo" Table="StoreStaging" RowCount="54" />
+        <Column Name="state" SqlDbType="NVarChar" MaxLength="50" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <NullCount>0</NullCount>
+      </ColumnNullRatioProfile>
+      <ColumnNullRatioProfile ProfileRequestID="NullRatioReq" IsExact="true">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table DataSource="DESKTOP-OHPI2QJ\SQLEXPRESS" Database="R_Staging_DWWWWWW" Schema="dbo" Table="StoreStaging" RowCount="54" />
+        <Column Name="type" SqlDbType="NVarChar" MaxLength="50" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <NullCount>0</NullCount>
+      </ColumnNullRatioProfile>
+      <ColumnNullRatioProfile ProfileRequestID="NullRatioReq" IsExact="true">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table DataSource="DESKTOP-OHPI2QJ\SQLEXPRESS" Database="R_Staging_DWWWWWW" Schema="dbo" Table="StoreStaging" RowCount="54" />
+        <Column Name="cluster" SqlDbType="NVarChar" MaxLength="50" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <NullCount>0</NullCount>
+      </ColumnNullRatioProfile>
+      <ColumnLengthDistributionProfile ProfileRequestID="LengthDistReq" IsExact="true">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table DataSource="DESKTOP-OHPI2QJ\SQLEXPRESS" Database="R_Staging_DWWWWWW" Schema="dbo" Table="StoreStaging" RowCount="54" />
+        <Column Name="store_nbr" SqlDbType="NVarChar" MaxLength="50" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <IgnoreLeadingSpace>false</IgnoreLeadingSpace>
+        <IgnoreTrailingSpace>true</IgnoreTrailingSpace>
+        <MinLength>1</MinLength>
+        <MaxLength>2</MaxLength>
+        <LengthDistribution>
+          <LengthDistributionItem>
+            <Length>1</Length>
+            <Count>9</Count>
+          </LengthDistributionItem>
+          <LengthDistributionItem>
+            <Length>2</Length>
+            <Count>45</Count>
+          </LengthDistributionItem>
+        </LengthDistribution>
+      </ColumnLengthDistributionProfile>
+      <ColumnLengthDistributionProfile ProfileRequestID="LengthDistReq" IsExact="true">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table DataSource="DESKTOP-OHPI2QJ\SQLEXPRESS" Database="R_Staging_DWWWWWW" Schema="dbo" Table="StoreStaging" RowCount="54" />
+        <Column Name="city" SqlDbType="NVarChar" MaxLength="50" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <IgnoreLeadingSpace>false</IgnoreLeadingSpace>
+        <IgnoreTrailingSpace>true</IgnoreTrailingSpace>
+        <MinLength>4</MinLength>
+        <MaxLength>13</MaxLength>
+        <LengthDistribution>
+          <LengthDistributionItem>
+            <Length>4</Length>
+            <Count>2</Count>
+          </LengthDistributionItem>
+          <LengthDistributionItem>
+            <Length>5</Length>
+            <Count>21</Count>
+          </LengthDistributionItem>
+          <LengthDistributionItem>
+            <Length>6</Length>
+            <Count>7</Count>
+          </LengthDistributionItem>
+          <LengthDistributionItem>
+            <Length>7</Length>
+            <Count>5</Count>
+          </LengthDistributionItem>
+          <LengthDistributionItem>
+            <Length>8</Length>
+            <Count>4</Count>
+          </LengthDistributionItem>
+          <LengthDistributionItem>
+            <Length>9</Length>
+            <Count>11</Count>
+          </LengthDistributionItem>
+          <LengthDistributionItem>
+            <Length>10</Length>
+            <Count>1</Count>
+          </LengthDistributionItem>
+          <LengthDistributionItem>
+            <Length>13</Length>
+            <Count>3</Count>
+          </LengthDistributionItem>
+        </LengthDistribution>
+      </ColumnLengthDistributionProfile>
+      <ColumnLengthDistributionProfile ProfileRequestID="LengthDistReq" IsExact="true">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table DataSource="DESKTOP-OHPI2QJ\SQLEXPRESS" Database="R_Staging_DWWWWWW" Schema="dbo" Table="StoreStaging" RowCount="54" />
+        <Column Name="state" SqlDbType="NVarChar" MaxLength="50" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <IgnoreLeadingSpace>false</IgnoreLeadingSpace>
+        <IgnoreTrailingSpace>true</IgnoreTrailingSpace>
+        <MinLength>4</MinLength>
+        <MaxLength>30</MaxLength>
+        <LengthDistribution>
+          <LengthDistributionItem>
+            <Length>4</Length>
+            <Count>1</Count>
+          </LengthDistributionItem>
+          <LengthDistributionItem>
+            <Length>5</Length>
+            <Count>3</Count>
+          </LengthDistributionItem>
+          <LengthDistributionItem>
+            <Length>6</Length>
+            <Count>16</Count>
+          </LengthDistributionItem>
+          <LengthDistributionItem>
+            <Length>7</Length>
+            <Count>2</Count>
+          </LengthDistributionItem>
+          <LengthDistributionItem>
+            <Length>8</Length>
+            <Count>5</Count>
+          </LengthDistributionItem>
+          <LengthDistributionItem>
+            <Length>9</Length>
+            <Count>19</Count>
+          </LengthDistributionItem>
+          <LengthDistributionItem>
+            <Length>10</Length>
+            <Count>4</Count>
+          </LengthDistributionItem>
+          <LengthDistributionItem>
+            <Length>11</Length>
+            <Count>1</Count>
+          </LengthDistributionItem>
+          <LengthDistributionItem>
+            <Length>30</Length>
+            <Count>3</Count>
+          </LengthDistributionItem>
+        </LengthDistribution>
+      </ColumnLengthDistributionProfile>
+      <ColumnLengthDistributionProfile ProfileRequestID="LengthDistReq" IsExact="true">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table DataSource="DESKTOP-OHPI2QJ\SQLEXPRESS" Database="R_Staging_DWWWWWW" Schema="dbo" Table="StoreStaging" RowCount="54" />
+        <Column Name="type" SqlDbType="NVarChar" MaxLength="50" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <IgnoreLeadingSpace>false</IgnoreLeadingSpace>
+        <IgnoreTrailingSpace>true</IgnoreTrailingSpace>
+        <MinLength>1</MinLength>
+        <MaxLength>1</MaxLength>
+        <LengthDistribution>
+          <LengthDistributionItem>
+            <Length>1</Length>
+            <Count>54</Count>
+          </LengthDistributionItem>
+        </LengthDistribution>
+      </ColumnLengthDistributionProfile>
+      <ColumnLengthDistributionProfile ProfileRequestID="LengthDistReq" IsExact="true">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table DataSource="DESKTOP-OHPI2QJ\SQLEXPRESS" Database="R_Staging_DWWWWWW" Schema="dbo" Table="StoreStaging" RowCount="54" />
+        <Column Name="cluster" SqlDbType="NVarChar" MaxLength="50" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <IgnoreLeadingSpace>false</IgnoreLeadingSpace>
+        <IgnoreTrailingSpace>true</IgnoreTrailingSpace>
+        <MinLength>1</MinLength>
+        <MaxLength>2</MaxLength>
+        <LengthDistribution>
+          <LengthDistributionItem>
+            <Length>1</Length>
+            <Count>29</Count>
+          </LengthDistributionItem>
+          <LengthDistributionItem>
+            <Length>2</Length>
+            <Count>25</Count>
+          </LengthDistributionItem>
+        </LengthDistribution>
+      </ColumnLengthDistributionProfile>
+      <CandidateKeyProfile IsExact="true" ProfileRequestID="KeyReq">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table DataSource="DESKTOP-OHPI2QJ\SQLEXPRESS" Database="R_Staging_DWWWWWW" Schema="dbo" Table="StoreStaging" RowCount="54" />
+        <KeyColumns>
+          <Column Name="store_nbr" SqlDbType="NVarChar" MaxLength="50" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        </KeyColumns>
+        <IsExactKey>true</IsExactKey>
+      </CandidateKeyProfile>
+      <ColumnValueDistributionProfile IsExact="true" ProfileRequestID="ValueDistReq">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table DataSource="DESKTOP-OHPI2QJ\SQLEXPRESS" Database="R_Staging_DWWWWWW" Schema="dbo" Table="StoreStaging" RowCount="54" />
+        <Column Name="store_nbr" SqlDbType="NVarChar" MaxLength="50" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <NumberOfDistinctValues>54</NumberOfDistinctValues>
+        <ValueDistribution>
+          <ValueDistributionItem>
+            <Value>1</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>10</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>11</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>12</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>13</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>14</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>15</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>16</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>17</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>18</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>19</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>20</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>21</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>22</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>23</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>24</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>25</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>26</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>27</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>28</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>29</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>3</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>30</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>31</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>32</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>33</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>34</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>35</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>36</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>37</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>38</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>39</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>4</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>40</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>41</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>42</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>43</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>44</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>45</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>46</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>47</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>48</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>49</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>5</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>50</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>51</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>52</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>53</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>54</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>6</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>7</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>8</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>9</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+        </ValueDistribution>
+      </ColumnValueDistributionProfile>
+      <ColumnValueDistributionProfile IsExact="true" ProfileRequestID="ValueDistReq">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table DataSource="DESKTOP-OHPI2QJ\SQLEXPRESS" Database="R_Staging_DWWWWWW" Schema="dbo" Table="StoreStaging" RowCount="54" />
+        <Column Name="city" SqlDbType="NVarChar" MaxLength="50" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <NumberOfDistinctValues>22</NumberOfDistinctValues>
+        <ValueDistribution>
+          <ValueDistributionItem>
+            <Value>Ambato</Value>
+            <Count>2</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>Babahoyo</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>Cayambe</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>Cuenca</Value>
+            <Count>3</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>Daule</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>El Carmen</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>Esmeraldas</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>Guaranda</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>Guayaquil</Value>
+            <Count>8</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>Ibarra</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>Latacunga</Value>
+            <Count>2</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>Libertad</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>Loja</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>Machala</Value>
+            <Count>2</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>Manta</Value>
+            <Count>2</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>Playas</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>Puyo</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>Quevedo</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>Quito</Value>
+            <Count>18</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>Riobamba</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>Salinas</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>Santo Domingo</Value>
+            <Count>3</Count>
+          </ValueDistributionItem>
+        </ValueDistribution>
+      </ColumnValueDistributionProfile>
+      <ColumnValueDistributionProfile IsExact="true" ProfileRequestID="ValueDistReq">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table DataSource="DESKTOP-OHPI2QJ\SQLEXPRESS" Database="R_Staging_DWWWWWW" Schema="dbo" Table="StoreStaging" RowCount="54" />
+        <Column Name="state" SqlDbType="NVarChar" MaxLength="50" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <NumberOfDistinctValues>16</NumberOfDistinctValues>
+        <ValueDistribution>
+          <ValueDistributionItem>
+            <Value>Azuay</Value>
+            <Count>3</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>Bolivar</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>Chimborazo</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>Cotopaxi</Value>
+            <Count>2</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>El Oro</Value>
+            <Count>2</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>Esmeraldas</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>Guayas</Value>
+            <Count>11</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>Imbabura</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>Loja</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>Los Rios</Value>
+            <Count>2</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>Manabi</Value>
+            <Count>3</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>Pastaza</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>Pichincha</Value>
+            <Count>19</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>Santa Elena</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>Santo Domingo de los Tsachilas</Value>
+            <Count>3</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>Tungurahua</Value>
+            <Count>2</Count>
+          </ValueDistributionItem>
+        </ValueDistribution>
+      </ColumnValueDistributionProfile>
+      <ColumnValueDistributionProfile IsExact="true" ProfileRequestID="ValueDistReq">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table DataSource="DESKTOP-OHPI2QJ\SQLEXPRESS" Database="R_Staging_DWWWWWW" Schema="dbo" Table="StoreStaging" RowCount="54" />
+        <Column Name="type" SqlDbType="NVarChar" MaxLength="50" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <NumberOfDistinctValues>5</NumberOfDistinctValues>
+        <ValueDistribution>
+          <ValueDistributionItem>
+            <Value>A</Value>
+            <Count>9</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>B</Value>
+            <Count>8</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>C</Value>
+            <Count>15</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>D</Value>
+            <Count>18</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>E</Value>
+            <Count>4</Count>
+          </ValueDistributionItem>
+        </ValueDistribution>
+      </ColumnValueDistributionProfile>
+      <ColumnValueDistributionProfile IsExact="true" ProfileRequestID="ValueDistReq">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table DataSource="DESKTOP-OHPI2QJ\SQLEXPRESS" Database="R_Staging_DWWWWWW" Schema="dbo" Table="StoreStaging" RowCount="54" />
+        <Column Name="cluster" SqlDbType="NVarChar" MaxLength="50" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <NumberOfDistinctValues>17</NumberOfDistinctValues>
+        <ValueDistribution>
+          <ValueDistributionItem>
+            <Value>1</Value>
+            <Count>3</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>10</Value>
+            <Count>6</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>11</Value>
+            <Count>3</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>12</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>13</Value>
+            <Count>4</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>14</Value>
+            <Count>4</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>15</Value>
+            <Count>5</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>16</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>17</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>2</Value>
+            <Count>2</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>3</Value>
+            <Count>7</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>4</Value>
+            <Count>3</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>5</Value>
+            <Count>1</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>6</Value>
+            <Count>6</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>7</Value>
+            <Count>2</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>8</Value>
+            <Count>3</Count>
+          </ValueDistributionItem>
+          <ValueDistributionItem>
+            <Value>9</Value>
+            <Count>2</Count>
+          </ValueDistributionItem>
+        </ValueDistribution>
+      </ColumnValueDistributionProfile>
+      <ColumnPatternProfile ProfileRequestID="PatternReq" IsExact="true">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table DataSource="DESKTOP-OHPI2QJ\SQLEXPRESS" Database="R_Staging_DWWWWWW" Schema="dbo" Table="StoreStaging" RowCount="54" />
+        <Column Name="store_nbr" SqlDbType="NVarChar" MaxLength="50" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <TopRegexPatterns>
+          <PatternDistributionItem>
+            <RegexText>\d\d</RegexText>
+            <Frequency>83</Frequency>
+          </PatternDistributionItem>
+          <PatternDistributionItem>
+            <RegexText>\d</RegexText>
+            <Frequency>17</Frequency>
+          </PatternDistributionItem>
+        </TopRegexPatterns>
+      </ColumnPatternProfile>
+      <ColumnPatternProfile ProfileRequestID="PatternReq" IsExact="true">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table DataSource="DESKTOP-OHPI2QJ\SQLEXPRESS" Database="R_Staging_DWWWWWW" Schema="dbo" Table="StoreStaging" RowCount="54" />
+        <Column Name="city" SqlDbType="NVarChar" MaxLength="50" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <TopRegexPatterns>
+          <PatternDistributionItem>
+            <RegexText>QUITO</RegexText>
+            <Frequency>33</Frequency>
+          </PatternDistributionItem>
+          <PatternDistributionItem>
+            <RegexText>GUAYAQUIL</RegexText>
+            <Frequency>15</Frequency>
+          </PatternDistributionItem>
+          <PatternDistributionItem>
+            <RegexText>SANTO DOMINGO</RegexText>
+            <Frequency>6</Frequency>
+          </PatternDistributionItem>
+          <PatternDistributionItem>
+            <RegexText>CUENCA</RegexText>
+            <Frequency>6</Frequency>
+          </PatternDistributionItem>
+          <PatternDistributionItem>
+            <RegexText>\p{L}+</RegexText>
+            <Frequency>39</Frequency>
+          </PatternDistributionItem>
+        </TopRegexPatterns>
+      </ColumnPatternProfile>
+      <ColumnPatternProfile ProfileRequestID="PatternReq" IsExact="true">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table DataSource="DESKTOP-OHPI2QJ\SQLEXPRESS" Database="R_Staging_DWWWWWW" Schema="dbo" Table="StoreStaging" RowCount="54" />
+        <Column Name="state" SqlDbType="NVarChar" MaxLength="50" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <TopRegexPatterns>
+          <PatternDistributionItem>
+            <RegexText>PICHINCHA</RegexText>
+            <Frequency>35</Frequency>
+          </PatternDistributionItem>
+          <PatternDistributionItem>
+            <RegexText>GUAYAS</RegexText>
+            <Frequency>20</Frequency>
+          </PatternDistributionItem>
+          <PatternDistributionItem>
+            <RegexText>SANTO DOMINGO DE LOS TSACHILAS</RegexText>
+            <Frequency>6</Frequency>
+          </PatternDistributionItem>
+          <PatternDistributionItem>
+            <RegexText>MANABI</RegexText>
+            <Frequency>6</Frequency>
+          </PatternDistributionItem>
+          <PatternDistributionItem>
+            <RegexText>AZUAY</RegexText>
+            <Frequency>6</Frequency>
+          </PatternDistributionItem>
+          <PatternDistributionItem>
+            <RegexText>\p{L}+</RegexText>
+            <Frequency>19</Frequency>
+          </PatternDistributionItem>
+          <PatternDistributionItem>
+            <RegexText>\p{L}+ \p{L}+</RegexText>
+            <Frequency>9</Frequency>
+          </PatternDistributionItem>
+        </TopRegexPatterns>
+      </ColumnPatternProfile>
+      <ColumnPatternProfile ProfileRequestID="PatternReq" IsExact="true">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table DataSource="DESKTOP-OHPI2QJ\SQLEXPRESS" Database="R_Staging_DWWWWWW" Schema="dbo" Table="StoreStaging" RowCount="54" />
+        <Column Name="type" SqlDbType="NVarChar" MaxLength="50" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <TopRegexPatterns>
+          <PatternDistributionItem>
+            <RegexText>D</RegexText>
+            <Frequency>33</Frequency>
+          </PatternDistributionItem>
+          <PatternDistributionItem>
+            <RegexText>C</RegexText>
+            <Frequency>28</Frequency>
+          </PatternDistributionItem>
+          <PatternDistributionItem>
+            <RegexText>A</RegexText>
+            <Frequency>17</Frequency>
+          </PatternDistributionItem>
+          <PatternDistributionItem>
+            <RegexText>B</RegexText>
+            <Frequency>15</Frequency>
+          </PatternDistributionItem>
+          <PatternDistributionItem>
+            <RegexText>E</RegexText>
+            <Frequency>7</Frequency>
+          </PatternDistributionItem>
+        </TopRegexPatterns>
+      </ColumnPatternProfile>
+      <ColumnPatternProfile ProfileRequestID="PatternReq" IsExact="true">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table DataSource="DESKTOP-OHPI2QJ\SQLEXPRESS" Database="R_Staging_DWWWWWW" Schema="dbo" Table="StoreStaging" RowCount="54" />
+        <Column Name="cluster" SqlDbType="NVarChar" MaxLength="50" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <TopRegexPatterns>
+          <PatternDistributionItem>
+            <RegexText>\d\d</RegexText>
+            <Frequency>46</Frequency>
+          </PatternDistributionItem>
+          <PatternDistributionItem>
+            <RegexText>\d</RegexText>
+            <Frequency>54</Frequency>
+          </PatternDistributionItem>
+        </TopRegexPatterns>
+      </ColumnPatternProfile>
+      <FunctionalDependencyProfile IsExact="true" ProfileRequestID="">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table DataSource="DESKTOP-OHPI2QJ\SQLEXPRESS" Database="R_Staging_DWWWWWW" Schema="dbo" Table="StoreStaging" RowCount="54" />
+        <DeterminantColumns>
+          <Column Name="store_nbr" SqlDbType="NVarChar" MaxLength="50" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        </DeterminantColumns>
+        <DependentColumn Name="cluster" SqlDbType="NVarChar" MaxLength="50" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <IsExactFD>true</IsExactFD>
+      </FunctionalDependencyProfile>
+      <FunctionalDependencyProfile IsExact="true" ProfileRequestID="">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table DataSource="DESKTOP-OHPI2QJ\SQLEXPRESS" Database="R_Staging_DWWWWWW" Schema="dbo" Table="StoreStaging" RowCount="54" />
+        <DeterminantColumns>
+          <Column Name="store_nbr" SqlDbType="NVarChar" MaxLength="50" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        </DeterminantColumns>
+        <DependentColumn Name="type" SqlDbType="NVarChar" MaxLength="50" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <IsExactFD>true</IsExactFD>
+      </FunctionalDependencyProfile>
+      <FunctionalDependencyProfile IsExact="true" ProfileRequestID="">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table DataSource="DESKTOP-OHPI2QJ\SQLEXPRESS" Database="R_Staging_DWWWWWW" Schema="dbo" Table="StoreStaging" RowCount="54" />
+        <DeterminantColumns>
+          <Column Name="store_nbr" SqlDbType="NVarChar" MaxLength="50" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        </DeterminantColumns>
+        <DependentColumn Name="state" SqlDbType="NVarChar" MaxLength="50" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <IsExactFD>true</IsExactFD>
+      </FunctionalDependencyProfile>
+      <FunctionalDependencyProfile IsExact="true" ProfileRequestID="">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table DataSource="DESKTOP-OHPI2QJ\SQLEXPRESS" Database="R_Staging_DWWWWWW" Schema="dbo" Table="StoreStaging" RowCount="54" />
+        <DeterminantColumns>
+          <Column Name="store_nbr" SqlDbType="NVarChar" MaxLength="50" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        </DeterminantColumns>
+        <DependentColumn Name="city" SqlDbType="NVarChar" MaxLength="50" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <IsExactFD>true</IsExactFD>
+      </FunctionalDependencyProfile>
+      <FunctionalDependencyProfile IsExact="true" ProfileRequestID="FDReq">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table DataSource="DESKTOP-OHPI2QJ\SQLEXPRESS" Database="R_Staging_DWWWWWW" Schema="dbo" Table="StoreStaging" RowCount="54" />
+        <DeterminantColumns>
+          <Column Name="cluster" SqlDbType="NVarChar" MaxLength="50" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        </DeterminantColumns>
+        <DependentColumn Name="type" SqlDbType="NVarChar" MaxLength="50" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <IsExactFD>false</IsExactFD>
+        <FDStrength>0.962963</FDStrength>
+        <FDViolations>
+          <FDViolationItem>
+            <DeterminantValues>
+              <ColumnValue>10</ColumnValue>
+            </DeterminantValues>
+            <DependentValue>E</DependentValue>
+            <SupportCount>4</SupportCount>
+            <ViolationCount>2</ViolationCount>
+          </FDViolationItem>
+        </FDViolations>
+      </FunctionalDependencyProfile>
+      <FunctionalDependencyProfile IsExact="true" ProfileRequestID="FDReq">
+        <DataSourceID>{5E8BB5F9-3093-44AA-B33B-316B76AB57D6}</DataSourceID>
+        <Table DataSource="DESKTOP-OHPI2QJ\SQLEXPRESS" Database="R_Staging_DWWWWWW" Schema="dbo" Table="StoreStaging" RowCount="54" />
+        <DeterminantColumns>
+          <Column Name="city" SqlDbType="NVarChar" MaxLength="50" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        </DeterminantColumns>
+        <DependentColumn Name="state" SqlDbType="NVarChar" MaxLength="50" Precision="255" Scale="255" LCID="1033" CodePage="0" IsNullable="true" StringCompareOptions="0" />
+        <IsExactFD>true</IsExactFD>
+      </FunctionalDependencyProfile>
+    </Profiles>
+  </DataProfileOutput>
+</DataProfile>
